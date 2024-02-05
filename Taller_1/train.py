@@ -16,23 +16,35 @@
 # # 1. Dependencies import
 
 import numpy as np
-import joblib as job
+import joblib
 import pandas as pd
 from sklearn.metrics import f1_score, accuracy_score, precision_score
-from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LogisticRegression
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import LabelEncoder
 from sklearn.tree import DecisionTreeClassifier
 
 # # 2. Parameters
 
-TARGET = "sex"
+TARGET = "specie"
+COLUMNS_RENAME_DICT = {"Culmen Length (mm)": "culmen_length_mm",
+                       "Culmen Depth (mm)": "culmen_depth_mm",
+                       "Flipper Length (mm)": "flipper_length_mm",
+                       "Body Mass (g)": "body_mass_g",
+                       "Sex": "sex",
+                       "Delta 15 N (o/oo)": "delta15N",
+                       "Delta 13 C (o/oo)": "delta13N",
+                       "Species": "specie"
+}
 FEATURES_DICT = {
     "culmen_length_mm": ("float", [0.0075, 0.9975], "median"),
     "culmen_depth_mm": ("float", [0.0075, 0.9975], "median"),
     "flipper_length_mm": ("float", [0.0075, 0.9975], "median"),
-    "body_mass_g": ("float", [0.0075, 0.9975], "median")
+    "body_mass_g": ("float", [0.0075, 0.9975], "median"),
+    "sex": ("category", "na", "mode"),
+    "delta15N": ("float", [0.0075, 0.9975], "median"),
+    "delta13N": ("float", [0.0075, 0.9975], "median")
 }
+FEATURES_CATEGORICAL = ["sex"]
 FEATURES = list(FEATURES_DICT.keys())
 
 
@@ -56,12 +68,16 @@ def drop_outliers(data, features_dict):
     init_len = len(data)
 
     for feature in features_dict.keys():
-        lower_bound, upper_bound = features_dict[feature][1]
-        subset = subset.loc[((subset[feature] > data[feature].quantile(lower_bound)) & (subset[feature] < data[feature].quantile(upper_bound)))].copy()
-        dropped = len(subset) - init_len
-        dropped_percent = 100 * dropped/init_len
-        print(f"{feature} dropped rows: {dropped}, percent rows: {dropped_percent:.2f}%")
-
+        if features_dict[feature][0] == "float":
+            lower_bound, upper_bound = features_dict[feature][1]
+            subset = subset.loc[((subset[feature] > data[feature].quantile(lower_bound)) & (subset[feature] < data[feature].quantile(upper_bound)))].copy()
+            dropped = len(subset) - init_len
+            dropped_percent = 100 * dropped/init_len
+            print(f"{feature} dropped rows: {dropped}, percent rows: {dropped_percent:.2f}%")
+        elif features_dict[feature][0] == "category":
+            pass
+        else:
+            pass
     return subset
 
 
@@ -83,8 +99,10 @@ def impute_values(data, features_dict):
     subset = data.copy()
 
     for feature in features_dict.keys():
-        if features_dict[feature][2] == "median":
+        if features_dict[feature][0] == "float":
             subset[feature].fillna(subset[feature].median(), inplace = True)
+        elif features_dict[feature][0] == "category":
+            subset[feature].fillna(subset[feature].mode().iloc[0], inplace = True)
         else:
             pass
 
@@ -93,9 +111,8 @@ def impute_values(data, features_dict):
 
 # # 4. Data Gathering & Processing 
 
-df = pd.read_csv("penguins_size.csv")
-
-df.head(10)
+df = pd.read_csv("data/penguins_lter.csv")
+df.rename(columns=COLUMNS_RENAME_DICT, inplace=True)
 
 df = df[FEATURES + [TARGET]]
 
@@ -113,7 +130,9 @@ df = impute_values(df, FEATURES_DICT)
 df = df.dropna()
 
 label_encoder = LabelEncoder()
-df['sex'] = label_encoder.fit_transform(df['sex'])
+for feature in FEATURES_CATEGORICAL:
+    df[feature] = label_encoder.fit_transform(df[feature])    
+df[TARGET] = label_encoder.fit_transform(df[TARGET])
 
 df.describe().T
 
@@ -126,14 +145,14 @@ y = df[TARGET]
 
 #Models
 tree = DecisionTreeClassifier(random_state=0)
-logic = LogisticRegression(random_state=0)
+random_tree = RandomForestClassifier(random_state=0)
 
 tree.fit(X, y)
-logic.fit(X, y)
+random_tree.fit(X, y)
 
 # # 6. Put model in prod
 
-joblib.dump(tree, 'tree.pkl')
-joblib.dump(logic, 'logic.pkl')
+joblib.dump(tree, 'models/tree.pkl')
+joblib.dump(random_tree, 'models/random_tree.pkl')
 
 
