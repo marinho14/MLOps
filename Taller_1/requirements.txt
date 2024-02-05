@@ -4,4 +4,4 @@ fastapi
 scikit-learn
 numpy
 joblib
-"uvicorn[standard]"
+uvicorn[standard]

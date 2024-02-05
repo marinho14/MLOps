@@ -1,30 +1,30 @@
 import joblib
 import sklearn
 from fastapi import FastAPI, HTTPException , APIRouter
-import json 
 import uvicorn
 from pydantic import BaseModel
+from typing import List
+import pandas as pd
 
 class Penguin(BaseModel):
-    culmenLen: float
-    culmenDepth: float
-    flipperLen: int
-    bodyMass: int
-    sex: str
-    delta15N: float
-    delta13C: float
+    culmenLen: List[float]
+    culmenDepth: List[float]
+    flipperLen: List[int]
+    bodyMass: List[int]
+    sex: List[str]
+    delta15N: List[float]
+    delta13C: List[float]
+
+species_mapping = {'Adelie': 0, 'Chinstrap': 1, 'Gentoo': 2}
 
 app = FastAPI()
     
-def decode_input(self , input_json: json):
+def decode_input(input):
+    input_dict=dict(input)
+    df = pd.DataFrame.from_dict(input_dict)
+    df['sex'] = df['sex'].apply(lambda x: 0 if x == 'Male' else 1)
+    return df
     
-    self.input_df = input_json
-    return True
-    
-def predict(self , model):
-    
-    inference = 1
-    return inference
 
 @app.post("/predict/{model_name}")
 def predict_model(model_name: str, input_data : Penguin):
@@ -33,11 +33,12 @@ def predict_model(model_name: str, input_data : Penguin):
     model = joblib.load(model_path)
 
     # Decodificar los datos de entrada
-    # decoded_input = decode_input(input_data)
-
-    # Realizar predicción
-    # prediction = predict(decoded_input, model)
-    return {"model_used": model_name, "prediction": [1]}
+    decoded_input = decode_input(input_data)
+    prediction = model.predict(decoded_input)
+    prediction_list = prediction.tolist()
+    prediction_mapped = [list(species_mapping.keys())[list(species_mapping.values()).index(x)] for x in prediction_list]
+    
+    return {"model_used": model_name, "prediction":prediction_mapped}
 
 if __name__ == "__main__":
     # Ejecutar la aplicación con Uvicorn

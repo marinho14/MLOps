@@ -26,23 +26,23 @@ from sklearn.tree import DecisionTreeClassifier
 # # 2. Parameters
 
 TARGET = "specie"
-COLUMNS_RENAME_DICT = {"Culmen Length (mm)": "culmen_length_mm",
-                       "Culmen Depth (mm)": "culmen_depth_mm",
-                       "Flipper Length (mm)": "flipper_length_mm",
-                       "Body Mass (g)": "body_mass_g",
+COLUMNS_RENAME_DICT = {"Culmen Length (mm)": "culmenLen",
+                       "Culmen Depth (mm)": "culmenDepth",
+                       "Flipper Length (mm)": "flipperLen",
+                       "Body Mass (g)": "bodyMass",
                        "Sex": "sex",
                        "Delta 15 N (o/oo)": "delta15N",
-                       "Delta 13 C (o/oo)": "delta13N",
+                       "Delta 13 C (o/oo)": "delta13C",
                        "Species": "specie"
 }
 FEATURES_DICT = {
-    "culmen_length_mm": ("float", [0.0075, 0.9975], "median"),
-    "culmen_depth_mm": ("float", [0.0075, 0.9975], "median"),
-    "flipper_length_mm": ("float", [0.0075, 0.9975], "median"),
-    "body_mass_g": ("float", [0.0075, 0.9975], "median"),
+    "culmenLen": ("float", [0.0075, 0.9975], "median"),
+    "culmenDepth": ("float", [0.0075, 0.9975], "median"),
+    "flipperLen": ("float", [0.0075, 0.9975], "median"),
+    "bodyMass": ("float", [0.0075, 0.9975], "median"),
     "sex": ("category", "na", "mode"),
     "delta15N": ("float", [0.0075, 0.9975], "median"),
-    "delta13N": ("float", [0.0075, 0.9975], "median")
+    "delta13C": ("float", [0.0075, 0.9975], "median")
 }
 FEATURES_CATEGORICAL = ["sex"]
 FEATURES = list(FEATURES_DICT.keys())
@@ -111,14 +111,8 @@ def impute_values(data, features_dict):
 
 # # 4. Data Gathering & Processing 
 
-<<<<<<< HEAD
-df = pd.read_csv("data/penguins_size.csv")
-
-df.head(10)
-=======
 df = pd.read_csv("data/penguins_lter.csv")
 df.rename(columns=COLUMNS_RENAME_DICT, inplace=True)
->>>>>>> ad7a7256c14aeb1c59eae8f32c406a8e7311a2f5
 
 df = df[FEATURES + [TARGET]]
 
@@ -159,10 +153,6 @@ random_tree.fit(X, y)
 # # 6. Put model in prod
 
 joblib.dump(tree, 'models/tree.pkl')
-<<<<<<< HEAD
-joblib.dump(logic, 'models/logic.pkl')
-=======
 joblib.dump(random_tree, 'models/random_tree.pkl')
->>>>>>> ad7a7256c14aeb1c59eae8f32c406a8e7311a2f5
 
 
