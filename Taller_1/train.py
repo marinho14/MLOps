@@ -16,7 +16,7 @@
 # # 1. Dependencies import
 
 import numpy as np
-import joblib as job
+import joblib
 import pandas as pd
 from sklearn.metrics import f1_score, accuracy_score, precision_score
 from sklearn.model_selection import train_test_split
@@ -93,7 +93,7 @@ def impute_values(data, features_dict):
 
 # # 4. Data Gathering & Processing 
 
-df = pd.read_csv("penguins_size.csv")
+df = pd.read_csv("data/penguins_size.csv")
 
 df.head(10)
 
@@ -133,7 +133,7 @@ logic.fit(X, y)
 
 # # 6. Put model in prod
 
-joblib.dump(tree, 'tree.pkl')
-joblib.dump(logic, 'logic.pkl')
+joblib.dump(tree, 'models/tree.pkl')
+joblib.dump(logic, 'models/logic.pkl')
 
 
