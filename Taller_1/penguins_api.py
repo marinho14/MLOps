@@ -40,6 +40,6 @@ def predict_model(model_name: str, input_data : Penguin):
     
     return {"model_used": model_name, "prediction":prediction_mapped}
 
-if __name__ == "__main__":
-    # Ejecutar la aplicación con Uvicorn
-    uvicorn.run(app, host="127.0.0.1", port=8000)
+# if __name__ == "__main__":
+#     # Ejecutar la aplicación con Uvicorn
+#     uvicorn.run(app, host="127.0.0.1", port=8000)
