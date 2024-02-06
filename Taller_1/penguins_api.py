@@ -5,6 +5,7 @@ import uvicorn
 from pydantic import BaseModel
 from typing import List
 import pandas as pd
+import os
 
 class Penguin(BaseModel):
     culmenLen: List[float]
@@ -40,6 +41,12 @@ def predict_model(model_name: str, input_data : Penguin):
     
     return {"model_used": model_name, "prediction":prediction_mapped}
 
+@app.get("/get_models")
+def get_models():
+    dir_list = os.listdir("models")
+    models_avaible = [elemento.split(".")[0] for elemento in dir_list]
+    return models_avaible
+    
 # if __name__ == "__main__":
 #     # Ejecutar la aplicación con Uvicorn
 #     uvicorn.run(app, host="127.0.0.1", port=8000)
