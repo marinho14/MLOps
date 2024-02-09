@@ -8,13 +8,22 @@ import pandas as pd
 import os
 
 class Penguin(BaseModel):
-    culmenLen: List[float]
-    culmenDepth: List[float]
-    flipperLen: List[int]
-    bodyMass: List[int]
-    sex: List[str]
-    delta15N: List[float]
-    delta13C: List[float]
+    studyName: List[str] = ['PAL0708']
+    sampleNumber: List[int] = [1]
+    region: List[str] = ['Anvers']
+    island: List[str] = ['Torgersen']
+    stage: List[str] = ['Adult, 1 Egg Stage']
+    individualID: List[str] = ['N1A1']
+    clutchCompletion: List[str] = ['Yes']
+    dateEgg: List[str] = ['11/11/07']
+    culmenLen: List[float] = [39.1]
+    culmenDepth: List[float] = [18.7]
+    flipperLen: List[int] = [181]
+    bodyMass: List[int] = [3750]
+    sex: List[str] = ['MALE']
+    delta15N: List[float] = [0.0]
+    delta13C: List[float] = [0.0]
+    comments: List[str] = ['Not enough blood for isotopes.'] 
 
 species_mapping = {'Adelie': 0, 'Chinstrap': 1, 'Gentoo': 2}
 
@@ -23,7 +32,9 @@ app = FastAPI()
 def decode_input(input):
     input_dict=dict(input)
     df = pd.DataFrame.from_dict(input_dict)
-    df['sex'] = df['sex'].apply(lambda x: 0 if x == 'Male' else 1)
+    df['sex'] = df['sex'].apply(lambda x: 0 if x == 'MALE' else 1)
+    model_columns = ['culmenLen', 'culmenDepth', 'flipperLen', 'bodyMass', 'sex', 'delta15N', 'delta13C']
+    df = df[model_columns]
     return df
     
 
