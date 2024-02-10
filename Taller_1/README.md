@@ -9,9 +9,10 @@
 5. acceder a la url 
 	localhost:8000/docs
 6. consultar los modelos disponibles a traves del metodo GET "get_models"
+   	![alt text](https://github.com/marinho14/MLOps/blob/main/Taller_1/images/paso1.png)
 	en el recuadro rojo se observan los modelos disponibles
 	copiar el nombre del modelo deseado SIN comillas
-7. realizar una prediccion a traves del metodo POST "predict"
+8. realizar una prediccion a traves del metodo POST "predict"
 	en el campo de texto "model_name" pegar el nombre del modelo SIN comillas
 	dentro del campo de texto "request_body" se encuentra ya un bodu definido por defecto
 	hacer clic en el recuadro execute
