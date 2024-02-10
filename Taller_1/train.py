@@ -114,7 +114,11 @@ def impute_values(data, features_dict):
 df = pd.read_csv("data/penguins_lter.csv")
 df.rename(columns=COLUMNS_RENAME_DICT, inplace=True)
 
-df = df[FEATURES + [TARGET]]
+# TODO: 1) Function to drop invalid values; 2) Function to cast every column according a dtype
+df = df.loc[df["sex"].isin(["MALE","FEMALE"])].copy()
+df["sex"] = df["sex"].astype("string")
+
+df = df[FEATURES + [TARGET]].copy()
 
 df.describe().T
 
@@ -126,13 +130,15 @@ df = drop_outliers(df, FEATURES_DICT)
 # Impute features
 df = impute_values(df, FEATURES_DICT)
 
+
 # Drop nan
 df = df.dropna()
 
-label_encoder = LabelEncoder()
-for feature in FEATURES_CATEGORICAL:
-    df[feature] = label_encoder.fit_transform(df[feature])    
-df[TARGET] = label_encoder.fit_transform(df[TARGET])
+sex_label_encoder = LabelEncoder()
+df["sex"] = sex_label_encoder.fit_transform(df["sex"])
+
+target_encoder = LabelEncoder()
+df[TARGET] = target_encoder.fit_transform(df[TARGET])
 
 df.describe().T
 
@@ -147,6 +153,8 @@ y = df[TARGET]
 tree = DecisionTreeClassifier(random_state=0)
 random_tree = RandomForestClassifier(random_state=0)
 
+X
+
 tree.fit(X, y)
 random_tree.fit(X, y)
 
@@ -154,5 +162,73 @@ random_tree.fit(X, y)
 
 joblib.dump(tree, 'models/tree.pkl')
 joblib.dump(random_tree, 'models/random_tree.pkl')
+
+# # 7. Put label encoder for sex in prod
+joblib.dump(sex_label_encoder, 'encoders/sex_label_encoder.pkl')
+
+dict_in = {
+  "studyName": [
+    "PAL0708"
+  ],
+  "sampleNumber": [
+    1
+  ],
+  "region": [
+    "Anvers"
+  ],
+  "island": [
+    "Torgersen"
+  ],
+  "stage": [
+    "Adult, 1 Egg Stage"
+  ],
+  "individualID": [
+    "N1A1"
+  ],
+  "clutchCompletion": [
+    "Yes"
+  ],
+  "dateEgg": [
+    "11/11/07"
+  ],
+  "culmenLen": [
+    39.1
+  ],
+  "culmenDepth": [
+    18.7
+  ],
+  "flipperLen": [
+    181
+  ],
+  "bodyMass": [
+    3750
+  ],
+  "sex": [
+    "MALE"
+  ],
+  "delta15N": [
+    0
+  ],
+  "delta13C": [
+    0
+  ],
+  "comments": [
+    "Not enough blood for isotopes."
+  ]
+}
+
+dict_in
+
+df_test = pd.DataFrame.from_dict(dict_in)
+
+model_columns = ['culmenLen', 'culmenDepth', 'flipperLen', 'bodyMass', 'sex', 'delta15N', 'delta13C']
+df_test = df_test[model_columns]
+
+df_test.info()
+
+df_test["sex"].astype("string")
+
+#df["sex"] = sex_label_encoder.transform(df["sex"])
+sex_label_encoder.transform(df_test["sex"])
 
 
