@@ -10,11 +10,17 @@
 	localhost:8000/docs
 6. consultar los modelos disponibles a traves del metodo GET "get_models"
    	![alt text](https://github.com/marinho14/MLOps/blob/main/Taller_1/images/paso1.png)
+   	![alt text](https://github.com/marinho14/MLOps/blob/main/Taller_1/images/paso2.png)
 	en el recuadro rojo se observan los modelos disponibles
+	![alt text](https://github.com/marinho14/MLOps/blob/main/Taller_1/images/paso3y4.png)
 	copiar el nombre del modelo deseado SIN comillas
 8. realizar una prediccion a traves del metodo POST "predict"
+   	![alt text](https://github.com/marinho14/MLOps/blob/main/Taller_1/images/paso1predict.png)
+   	![alt text](https://github.com/marinho14/MLOps/blob/main/Taller_1/images/paso2predict.png)
 	en el campo de texto "model_name" pegar el nombre del modelo SIN comillas
 	dentro del campo de texto "request_body" se encuentra ya un bodu definido por defecto
 	hacer clic en el recuadro execute
+	![alt text](https://github.com/marinho14/MLOps/blob/main/Taller_1/images/paso3y4predict.png)
 	en la seccion "server_response" encontrara un objeto json que contiene el tipo de modelo usado y la prediccion para los valores ingresados
+	![alt text](https://github.com/marinho14/MLOps/blob/main/Taller_1/images/predictFinal.png)
 	
