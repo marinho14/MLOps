@@ -1,7 +1,6 @@
 1. Desde la consola de GIT ejecutar el comando
    	```shell
 	git clone https://github.com/marinho14/MLOps.git
-    	```
 2. Desplazarse al directorio
    	```shell
 	cd MLOps/Taller_1
