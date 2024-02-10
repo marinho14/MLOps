@@ -5,15 +5,12 @@
 2. Desplazarse al directorio
    	```shell
 	cd MLOps/Taller_1
-    	```
 3. Constuir la imagen mediante el comando
    	```shell
 	docker build -t mlopstaller1 .
-    	```
 4. Correr la imagen creada mediante el comando
    	```shell
 	docker run --name instancia_taller1 -p 8089:80 mlopstaller1
-    	```
 5. Acceder a la url:
 	localhost:8089/docs
 6. Consultar los modelos disponibles a traves del metodo GET "get_models"
