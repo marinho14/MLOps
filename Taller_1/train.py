@@ -114,7 +114,11 @@ def impute_values(data, features_dict):
 df = pd.read_csv("data/penguins_lter.csv")
 df.rename(columns=COLUMNS_RENAME_DICT, inplace=True)
 
-df = df[FEATURES + [TARGET]]
+# TODO: 1) Function to drop invalid values; 2) Function to cast every column according a dtype
+df = df.loc[df["sex"].isin(["MALE","FEMALE"])].copy()
+df["sex"] = df["sex"].astype("string")
+
+df = df[FEATURES + [TARGET]].copy()
 
 df.describe().T
 
@@ -126,17 +130,15 @@ df = drop_outliers(df, FEATURES_DICT)
 # Impute features
 df = impute_values(df, FEATURES_DICT)
 
+
 # Drop nan
 df = df.dropna()
 
-label_encoder = LabelEncoder()
-for feature in FEATURES_CATEGORICAL:
-<<<<<<< HEAD
-    df[feature] = label_encoder.fit_transform(df[feature])
-=======
-    df[feature] = label_encoder.fit_transform(df[feature])    
->>>>>>> parent of b246146 (Update README.md)
-df[TARGET] = label_encoder.fit_transform(df[TARGET])
+sex_label_encoder = LabelEncoder()
+df["sex"] = sex_label_encoder.fit_transform(df["sex"])
+
+target_encoder = LabelEncoder()
+df[TARGET] = target_encoder.fit_transform(df[TARGET])
 
 df.describe().T
 
@@ -151,6 +153,8 @@ y = df[TARGET]
 tree = DecisionTreeClassifier(random_state=0)
 random_tree = RandomForestClassifier(random_state=0)
 
+X
+
 tree.fit(X, y)
 random_tree.fit(X, y)
 
@@ -159,12 +163,5 @@ random_tree.fit(X, y)
 joblib.dump(tree, 'models/tree.pkl')
 joblib.dump(random_tree, 'models/random_tree.pkl')
 
-<<<<<<< HEAD
 # # 7. Put label encoder for sex in prod
-sex_label_encoder = LabelEncoder()
-sex_label_encoder.fit(df["sex"])
 joblib.dump(sex_label_encoder, 'encoders/sex_label_encoder.pkl')
-
-=======
->>>>>>> parent of b246146 (Update README.md)
-
