@@ -4,7 +4,7 @@
 2. Desplazarse al directorio
    	```shell
 	cd MLOps/Taller_1
-3. Constuir la imagen mediante el comando
+3. Asegurando que tiene docker corriendo proceda a constuir la imagen mediante el comando
    	```shell
 	docker build -t mlopstaller1 .
 4. Correr la imagen creada mediante el comando

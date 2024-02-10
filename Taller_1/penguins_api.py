@@ -33,9 +33,14 @@ def decode_input(input):
     sex_label_encoder = joblib.load('encoders/sex_label_encoder.pkl')
     input_dict=dict(input)
     df = pd.DataFrame.from_dict(input_dict)
+<<<<<<< HEAD
     df['sex'] = sex_label_encoder.transform(df['sex'])
+=======
+    df['sex'] = sex_label_encoder.transform(df['sex'].astype("string"))
+>>>>>>> b246146261d19d1d4d50b0a27938d865d02de602
     model_columns = ['culmenLen', 'culmenDepth', 'flipperLen', 'bodyMass', 'sex', 'delta15N', 'delta13C']
     df = df[model_columns]
+    print(df)
     return df
     
 
@@ -47,6 +52,7 @@ def predict_model(model_name: str, input_data : Penguin):
 
     # Decodificar los datos de entrada
     decoded_input = decode_input(input_data)
+    print(decoded_input)
     prediction = model.predict(decoded_input)
     prediction_list = prediction.tolist()
     prediction_mapped = [list(species_mapping.keys())[list(species_mapping.values()).index(x)] for x in prediction_list]
