@@ -11,7 +11,8 @@
    	```shell
 	docker run --name instancia_taller1 -p 8089:80 mlopstaller1
 5. Acceder a la url:
-	localhost:8089/docs
+	```url
+ 	localhost:8089/docs
 6. Consultar los modelos disponibles a traves del metodo GET "get_models"
    	![alt text](https://github.com/marinho14/MLOps/blob/main/Taller_1/images/paso1.png)
    	![alt text](https://github.com/marinho14/MLOps/blob/main/Taller_1/images/paso2.png)

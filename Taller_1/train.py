@@ -131,7 +131,7 @@ df = df.dropna()
 
 label_encoder = LabelEncoder()
 for feature in FEATURES_CATEGORICAL:
-    df[feature] = label_encoder.fit_transform(df[feature])    
+    df[feature] = label_encoder.fit_transform(df[feature])
 df[TARGET] = label_encoder.fit_transform(df[TARGET])
 
 df.describe().T
@@ -154,5 +154,10 @@ random_tree.fit(X, y)
 
 joblib.dump(tree, 'models/tree.pkl')
 joblib.dump(random_tree, 'models/random_tree.pkl')
+
+# # 7. Put label encoder for sex in prod
+sex_label_encoder = LabelEncoder()
+sex_label_encoder.fit(df["sex"])
+joblib.dump(sex_label_encoder, 'encoders/sex_label_encoder.pkl')
 
 
