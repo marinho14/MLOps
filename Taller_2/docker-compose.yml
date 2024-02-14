@@ -1,0 +1,14 @@
+version: '3'
+services:
+  tfx:
+    image: tensorflow/tfx:1.12.0
+    ports:
+      - "8888:8888"
+      - "6006:6006"
+    volumes:
+      - type: bind
+        source: "%cd%"
+        target: "/tfx/src"
+    entrypoint: /run_jupyter.sh
+    tty: true
+    stdin_open: true
