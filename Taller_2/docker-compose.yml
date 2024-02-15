@@ -7,8 +7,9 @@ services:
       - "6006:6006"
     volumes:
       - type: bind
-        source: "%cd%"
+        source: .
         target: "/tfx/src"
     entrypoint: /run_jupyter.sh
     tty: true
     stdin_open: true
+    working_dir: /tfx/src
