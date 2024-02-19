@@ -33,7 +33,7 @@
    ![alt text](https://github.com/marinho14/MLOps/blob/main/Taller_2/imagenes/Captura%20de%20pantalla%202024-02-18%20181247.png)
    
 9. Hacer clic en build una vez esta ventana salga en pantalla
-   ![alt text](https://github.com/marinho14/MLOps/blob/main/Taller_2/imagenes/Captura%20de%20pantalla%202024-02-18%20181247.png)
+   ![alt text](https://github.com/marinho14/MLOps/blob/main/Taller_2/imagenes/Captura%20de%20pantalla%202024-02-18%20181227.png)
 
 10. Hacer clic en "save & reload"
     ![alt text](https://github.com/marinho14/MLOps/blob/main/Taller_2/imagenes/Captura%20de%20pantalla%202024-02-18%20195320.png)
