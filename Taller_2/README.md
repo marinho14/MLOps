@@ -18,6 +18,7 @@
 5. Será redirigido a la pagina:
     ```shell
     http://localhost:8888/login?next=%2Flab%3F
+    
     ![alt text](https://github.com/marinho14/MLOps/blob/main/Taller_2/imagenes/Captura%20de%20pantalla%202024-02-18%20180426.png)
 
 6. Abrir una ventana de terminal y ejecutar el siguiente comando:
