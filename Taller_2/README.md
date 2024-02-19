@@ -9,6 +9,8 @@
 3. Iniciar el servicio contenerizado mediante en comando:
     ```shell
     docker compose up
+    ```
+    
     (esta operacion puede tardar un poco)
     Una vez finaliza este proceso, el sistema presenta una url a traves de la cual acceder a jupyter.
     (en este caso puede saltar al paso 9)
