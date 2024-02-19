@@ -12,7 +12,7 @@
     (esta operacion puede tardar un poco)
     Una vez finaliza este proceso, el sistema presenta una url a traves de la cual acceder a jupyter.
     (en este caso puede saltar al paso 9)
-    
+
     ![alt text](https://github.com/marinho14/MLOps/blob/main/Taller_2/imagenes/MicrosoftTeams-image.png)
 
     en caso de que el sistema no presente la url, por fqavor continuar con los pasos en el orden presentado.
