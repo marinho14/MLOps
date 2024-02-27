@@ -5,7 +5,7 @@ FROM tensorflow/tfx:1.12.0
 WORKDIR /home/proy1/src
 
 # copy requirements.txt file
-# COPY requirements.txt /home/proy1/src/requirements.txt
+COPY . /home/proy1/src/.
 
 # install requirements.txt
 RUN pip install --upgrade pip
