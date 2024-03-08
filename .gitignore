@@ -1,2 +1,6 @@
 /Taller_3/logs
 /Taller_3/plugins
+__pycache__/
+/Taller_3/models/*
+/Taller_3/encoders/*
+*/.ipynb_checkpoints
