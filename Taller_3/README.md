@@ -1,10 +1,12 @@
 1. ejecutar el comando:
-docker exec -it taller_3-mysql-1 bash
 	```url
-	mysql -u airflow -p airflow
+	docker exec -it taller_3-mysql-1 bash```
 
 	```url
-	docker exec -it taller_3-airflow-worker bash
+	mysql -u airflow -p airflow```
+	
+	```url
+	docker exec -it taller_3-airflow-worker bash```
 
 2. ingresar a la url:
     ```url
@@ -15,9 +17,14 @@ docker exec -it taller_3-mysql-1 bash
     ![alt text](https://github.com/marinho14/MLOps/blob/main/Taller_3/images/Captura%20de%20pantalla%202024-03-10%20071307.png)
 4. activar el DAG "main" haciendo clic en el boton encerrado en el recuadro rojo
 	![alt text](https://github.com/marinho14/MLOps/blob/main/Taller_3/images/Captura%20de%20pantalla%202024-03-10%20071425.png)
-5. ingresar al dag haciendo clic sobre el nombre
+5. ingresar al dag haciendo clic sobre el nombre "main"
+	![alt text](https://github.com/marinho14/MLOps/blob/main/Taller_3/images/Captura%20de%20pantalla%202024-03-10%20081005.png)
 6. hacer clic en la pestaña "grahp"
+	![alt text](https://github.com/marinho14/MLOps/blob/main/Taller_3/images/Captura%20de%20pantalla%202024-03-10%20081019.png)
 7. validar que cada una de las cajas de grafo de tareas este en estado success
+	![alt text](https://github.com/marinho14/MLOps/blob/main/Taller_3/images/Captura%20de%20pantalla%202024-03-10%20071506.png)
+	![alt text](https://github.com/marinho14/MLOps/blob/main/Taller_3/images/Captura%20de%20pantalla%202024-03-10%20071513.png)
+	![alt text](https://github.com/marinho14/MLOps/blob/main/Taller_3/images/Captura%20de%20pantalla%202024-03-10%20071520.png)
 8. Acceder a la url:
 	```url
  	localhost:8000/docs
