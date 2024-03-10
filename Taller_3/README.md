@@ -1,8 +1,8 @@
 1. ejecutar el comando:
 docker exec -it taller_3-mysql-1 bash
-
+```
 mysql -u airflow -p airflow
-
+```
 docker exec -it taller_3-airflow-worker bash
 
 2. ingresar a la url:
