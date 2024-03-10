@@ -2,6 +2,7 @@
 docker exec -it taller_3-mysql-1 bash
 	```url
 	mysql -u airflow -p airflow
+
 	```url
 	docker exec -it taller_3-airflow-worker bash
 
@@ -11,8 +12,9 @@ docker exec -it taller_3-mysql-1 bash
 3. ingresar las siguientes credenciales en la ventana de inicio de sesion
     Usuario: airlflow
     Password: Airflow
-    ![alt text]()
+    ![alt text](https://github.com/marinho14/MLOps/blob/main/Taller_3/images/Captura%20de%20pantalla%202024-03-10%20071307.png)
 4. activar el DAG "main" haciendo clic en el boton encerrado en el recuadro rojo
+	![alt text](https://github.com/marinho14/MLOps/blob/main/Taller_3/images/Captura%20de%20pantalla%202024-03-10%20071425.png)
 5. ingresar al dag haciendo clic sobre el nombre
 6. hacer clic en la pestaña "grahp"
 7. validar que cada una de las cajas de grafo de tareas este en estado success
