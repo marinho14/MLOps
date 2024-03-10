@@ -6,8 +6,8 @@ mysql -u airflow -p airflow
 docker exec -it taller_3-airflow-worker bash
 
 2. ingresar a la url:
-    ```url
-    localhost:8080/home
+    '''url
+    localhost:8080/home'''
 3. ingresar las siguientes credenciales en la ventana de inicio de sesion
     Usuario: airlflow
     Password: Airflow
@@ -17,8 +17,8 @@ docker exec -it taller_3-airflow-worker bash
 6. hacer clic en la pestaña "grahp"
 7. validar que cada una de las cajas de grafo de tareas este en estado success
 8. Acceder a la url:
-	```url
- 	localhost:8000/docs
+	'''url
+ 	localhost:8000/docs'''
 9. Consultar los modelos disponibles a traves del metodo GET "get_models"
    	![alt text](https://github.com/marinho14/MLOps/blob/main/Taller_1/images/paso1.png)
    	![alt text](https://github.com/marinho14/MLOps/blob/main/Taller_1/images/paso2.png)
