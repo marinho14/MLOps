@@ -1,4 +1,8 @@
-1. ejecutar el comando:   
+1. ejecutar el comando:  
+	```url
+	docker compose up -d
+
+	opcional: con el fin de verificaciones en la base de datos ejecutar
 
 	```url
 	docker exec -it taller_3-mysql-1 bash   
