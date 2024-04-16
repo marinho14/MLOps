@@ -1,0 +1,7 @@
+version: '3.8'
+
+services:
+  fastapi:
+    image : marinho14/inference_image:tag
+    ports:
+      - "8083:8000"
