@@ -16,8 +16,6 @@ services:
     volumes:
       - ./:/mnt/locust
     command: -f /mnt/locust/locustfile.py --master -H http://locustmaster:8089
-    networks:
-      - network1
   
   locustworker:
     image: locustio/locust
@@ -26,10 +24,5 @@ services:
     volumes:
       - ./:/mnt/locust
     command: -f /mnt/locust/locustfile.py --worker --master-host locustmaster
-    networks:
-      - network1
-networks:
-  network1:
-    name: p2_default
-    external: false
+
   
