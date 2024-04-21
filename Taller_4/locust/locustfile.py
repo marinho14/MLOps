@@ -44,5 +44,5 @@ class LoadTest(HttpUser):
             "/predict/modelo_base", json=request_body, headers=headers
         )
 
-        print(f"Response status code: {response.status_code}")
-        print(f"Response content: {response.content.decode('utf-8')}")
+        # print(f"Response status code: {response.status_code}")
+        # print(f"Response content: {response.content.decode('utf-8')}")

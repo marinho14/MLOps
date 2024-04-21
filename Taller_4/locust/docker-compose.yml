@@ -6,7 +6,14 @@ services:
     image : marinho14/inference_image:tag
     ports:
       - "8083:8000"
-
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'  # Limitar el contenedor a utilizar el 50% de una CPU
+          memory: 512M  # Limitar el contenedor a utilizar 512 MB de memoria
+        reservations:
+          memory: 256M  # Reservar 256 MB de memoria para el contenedor
+          
   locustmaster:
     image: locustio/locust
     container_name: locustmaster

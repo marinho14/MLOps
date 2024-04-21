@@ -89,3 +89,41 @@ Siguiente presione "START", de este modo empezará la prueba de carga a nuestra 
 
 
 ## 5. Limitar recursos del contenedor
+
+Al intentar hacer 10 mil peticiones por segundo el contenedot caia, para efectos practicos de este punto, se opto por usar 1000 peticiones con un Ramp Up de 100.
+
+Se obtuvieron las stats de los contenedores con estas caracteristicas:
+
+![stats](images/stats.png "stats")
+
+Obteniendo la siguiente grafica:
+
+![locust_1000](images/locust_1000.png "locust_1000")
+
+Se pusieron las siguientes caracteristicas y funciono correctamente.
+
+```yml
+limits:
+    cpus: '0.9'  # Limitar el contenedor a utilizar el 50% de una CPU
+    memory: 512M  # Limitar el contenedor a utilizar 512 MB de memoria
+reservations:
+    memory: 256M  # Reservar 256 MB de memoria para el contenedor
+```
+
+Posteriormente se redujeron las caracteriticas para probar si se podia limitar y que siguiera funcionando:
+
+
+```yml
+limits:
+    cpus: '0.5'  # Limitar el contenedor a utilizar el 50% de una CPU
+    memory: 512M  # Limitar el contenedor a utilizar 512 MB de memoria
+reservations:
+    memory: 256M  # Reservar 256 MB de memoria para el contenedor
+```
+
+Dando como resultado:
+
+![stats_50](images/stats_50.png "stats_50")
+
+![locust_1000_50](images/locust_1000.png "locust_1000_50")
+
