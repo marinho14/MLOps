@@ -127,3 +127,19 @@ Dando como resultado:
 
 ![locust_1000_50](images/locust_1000.png "locust_1000_50")
 
+Con el fin de lograr los  10mil usuarios se duplico le memoria reservada de 256 a 512MB y se dejo el limite de memoria del contenedor en 512 MB
+limitando el uso de CPU al 75%  con la sigiente configuracion:
+
+```yml
+limits:
+    cpus: '0.75'  # Limitar el contenedor a utilizar el 75% de una CPU
+    memory: 512M  # Limitar el contenedor a utilizar 512 MB de memoria
+reservations:
+    memory: 512M  # Reservar 512 MB de memoria para el contenedor
+```
+Al ejecutar nuevamente el locust con una configuracion de 10mil usuarios llegando de a 1000 usuarios por segundo observamos que la mayor parte del uso de CPU se va en simular los usuarios por parte del Locust mientras que el Fastapi su porcentaje de CPU no supera el 1% como se puede ver en las imagenes siguientes:
+
+![Docker_10k](images/docker_10k.png "Docker_10k")
+
+![locust_10k](images/Locust_10k.png "locust_10k")
+
