@@ -9,10 +9,10 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.5'  # Limitar el contenedor a utilizar el 50% de una CPU
+          cpus: '0.75'  # Limitar el contenedor a utilizar el 50% de una CPU
           memory: 512M  # Limitar el contenedor a utilizar 512 MB de memoria
         reservations:
-          memory: 256M  # Reservar 256 MB de memoria para el contenedor
+          memory: 512M  # Reservar 256 MB de memoria para el contenedor
           
   locustmaster:
     image: locustio/locust
