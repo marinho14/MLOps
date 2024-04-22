@@ -139,7 +139,7 @@ reservations:
 ```
 Al ejecutar nuevamente el locust con una configuracion de 10mil usuarios llegando de a 1000 usuarios por segundo observamos que la mayor parte del uso de CPU se va en simular los usuarios por parte del Locust mientras que el Fastapi su porcentaje de CPU no supera el 1% como se puede ver en las imagenes siguientes:
 
-![Docker_10k](images/docker_10k.png "Docker_10k")
+![docker_10k](images/docker_10k.png "docker_10k")
 
-![locust_10k](images/Locust_10k.png "locust_10k")
+![Locust_10k](images/Locust_10k.png "Locust_10k")
 
